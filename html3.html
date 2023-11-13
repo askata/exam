@@ -1,0 +1,83 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đồng hồ</title>
+    <style>
+        .greeting{
+            font-size: 24px;
+        }
+        .morning{
+            color: green;
+        }
+        .afternoon{
+            color:blue;
+        }
+        .evening{
+            color:red;
+        }
+        .seconds span{
+            animation: changeColorSecond 2s linear infinite;
+        }
+        @keyframes changeColorSecond {
+            0%, 100% {
+                color: red;
+            }
+            50% {
+                color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id = "greeting" class="greeting">Xin Chao</div>
+    <p id="time">Thoi gian hien tai hien thi o day</p>
+    <div class="seconds">Giay:  <span>0</span></div>
+<script type="text/javascript">
+    function updateGreeting(){
+        const greetingElement = document.getElementById('greeting');
+        const timeElement = document.getElementById('time');
+        const secondsElement = document.querySelector('.second span');
+        const currentTime = new Date();
+        const currentHour = currentTime.getHours();
+
+        let greeting = '';
+        let className = '';
+
+        if (currentHour >= 5 && currentHour < 12){
+            greeting = 'Chao buoi sang';
+            className = 'morning';
+        } else if (currentHour >= 12 && currentHour < 18){
+            greeting = 'Chao buoi chieu';
+            className = 'afternoon';
+        }   else {
+            greeting = 'Chao buoi toi';
+            className = 'evening';
+        }
+
+        greetingElement.textContent = greeting;
+        greetingElement.classname = className;
+
+        const timeString = 'Bay gio la: ${currentTime.getHours()}:${String(curentTime.getMinute())}:${String(currentTime.getSeconds())}';
+        const timeContent= 'Bay gio la: ${currentTime}';
+        secondsElement.textContent = currentTime.getSeconds();
+    }
+    setInterval(updateGreeting, 1000);
+    updateGreeting();
+</script>
+<p id = "text" >Van ban nay dang doi mau</p>
+<script>
+    function changeColor(){
+        const textElement = document.getElementById('text');
+        const currentColor = textElement.style.color;
+
+        if (currentColor = 'blue'){
+        textElement.style.color = 'red';
+        } else {
+            textElement.style.color = 'blue';
+        }
+    }
+    setInterval(changeColor, 1000);
+</script>
+</body>
+</html>
